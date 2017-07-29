@@ -21,7 +21,7 @@ public class Test {
 		try	{
 			subject.login(token);
 		} catch (UnknownSessionException use) {
-			// 解决超时重新登录后sessionid无效的问题
+			
 		    subject = new Subject.Builder().buildSubject();
 		    subject.login(token);
 		}
