@@ -12,6 +12,10 @@ public class Test {
     private static Logger log = LogManager.getLogger(Test.class);
 	public static void main(String[] args) {
 		log.debug("-------------------------------begin------------------------");
+		
+		Parent pa = (Parent) new Son();
+//		pa;
+		
 		String pwd = new Sha256Hash("123", "SFC256").toString();
 		// SHIRO login
 		UsernamePasswordToken token = new UsernamePasswordToken("admin",
