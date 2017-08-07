@@ -8,7 +8,7 @@
 	<!-- 加载Spring配置文件 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:/configs/spring-*.xml</param-value>
+		<param-value>classpath:/config/spring-*.xml</param-value>
 	</context-param>
 	<!-- Spring监听 -->
 	<listener>
@@ -43,7 +43,7 @@
     <!-- 默认就会找这个文件，不需要额外配置引用  -->
     <context-param>  
         <param-name>log4jConfiguration</param-name>  
-        <param-value>classpath:/configs/log4j2.xml</param-value>  
+        <param-value>classpath:/config/log4j2.xml</param-value>  
     </context-param>  
     
     <listener>  
