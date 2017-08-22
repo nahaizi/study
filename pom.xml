@@ -6,6 +6,21 @@
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<repositories>
+		<repository>
+			<!-- Maven 自带的中央仓库使用的Id为central 如果其他的仓库声明也是用该Id 就会覆盖中央仓库的配置 -->
+			<id>mvnrepository</id>
+			<name>mvnrepository</name>
+			<url>http://www.mvnrepository.com/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<properties>
 		<!-- spring版本号 -->
 		<spring.version>4.3.2.RELEASE</spring.version>
@@ -13,7 +28,7 @@
 		<slf4j.version>1.7.23</slf4j.version>
 		<log4j.version>2.0.2</log4j.version>
 		<!-- junit版本号 -->
-		<junit.version>4.10</junit.version>
+		<junit.version>4.12</junit.version>
 		<!-- mybatis版本号 -->
 		<mybatis.version>3.2.1</mybatis.version>
 		<!-- poi版本号 -->
@@ -83,7 +98,28 @@
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 
+
+		<dependency>
+			<groupId>org.seasar.container</groupId>
+			<artifactId>s2-extension</artifactId>
+			<version>2.4.48</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seasar.container</groupId>
+			<artifactId>s2-framework</artifactId>
+			<version>2.4.48</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seasar.container</groupId>
+			<artifactId>s2-tiger</artifactId>
+			<version>2.4.48</version>
+		</dependency>
 		<!-- 日志文件管理包 -->
 		<!-- log start -->
 		<dependency>
@@ -106,11 +142,11 @@
 			<artifactId>log4j-jcl</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.logging.log4j</groupId> -->
+		<!-- <artifactId>log4j-slf4j-impl</artifactId> -->
+		<!-- <version>${log4j.version}</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -154,7 +190,7 @@
 			<version>3.9</version>
 		</dependency>
 
-        <!-- shiro -->
+		<!-- shiro -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-core</artifactId>

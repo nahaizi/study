@@ -3,7 +3,7 @@
 
 	<Appenders>
 		<Console name="Stdout" target="SYSTEM_OUT">
-			<PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n" />
+			<PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n" charset="GBK"/>
 		</Console>
 
         <!-- info|warn -->
@@ -55,34 +55,34 @@
  			<AppenderRef ref="errorLogFile" /> 
  			<AppenderRef ref="debugLogFile" /> 
 		</Root>
-		<!-- 所有com.joyintech 包的 Log级别，方便调试 -->
-		<Logger name="com.joyintech" level="debug" additivity="false">
+		<!-- 所有com.joyintech 包的 Log级别，方便调试 
+		<Logger name="com.lijunyu" level="debug" additivity="false">
 			<AppenderRef ref="Stdout" />
 			<AppenderRef ref="infoLogFile" />
 			<AppenderRef ref="errorLogFile" />
 			<AppenderRef ref="debugLogFile" />
-		</Logger>  
+		</Logger>  -->
 
-		<!-- 单独包的日志配置 -->
+		<!-- 单独包的日志配置 
 		 <Logger name="org.seasar" level="debug" additivity="false">
 			<AppenderRef ref="Stdout" />
 			<AppenderRef ref="infoLogFile" />
 			<AppenderRef ref="errorLogFile" />
 			<AppenderRef ref="debugLogFile" />
-		</Logger>  
-		<!-- 单独包的日志配置 -->
+		</Logger>  -->
+		<!-- 单独包的日志配置
 		<Logger name="joyinframework" level="error" additivity="false">
 			<AppenderRef ref="Stdout" />
 			<AppenderRef ref="errorLogFile" />
 			<AppenderRef ref="infoLogFile" />
 			<AppenderRef ref="debugLogFile" />
-		</Logger>
-		<!-- 单独包的日志配置 -->
+		</Logger> -->
+		<!-- 单独包的日志配置 
 		 <Logger name="org.zkoss" level="error" additivity="false">
 		    <AppenderRef ref="Stdout" />
 			<AppenderRef ref="errorLogFile" />
 			<AppenderRef ref="infoLogFile" />
 			<AppenderRef ref="debugLogFile" />
-		</Logger>
+		</Logger>-->
 	</Loggers>
 </Configuration>

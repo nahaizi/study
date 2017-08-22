@@ -1,5 +1,7 @@
 package com.lijunyu.spring.dao;
 
-public interface LoginDao {
+import com.lijunyu.spring.entity.User;
 
+public interface LoginDao {
+	 public User selectUserById(Integer userId);  
 }
