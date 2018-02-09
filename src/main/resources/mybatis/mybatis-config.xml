@@ -1,5 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>    
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"    
-"http://mybatis.org/dtd/mybatis-3-config.dtd">    
-<configuration>      
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+		<settings>
+			<setting name="logImpl" value="LOG4J2" />
+		</settings>
+		<!-- 批量加载映射配置文件,mybatis自动扫描包下面的mapper接口进行加载 遵循一定的规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录中； 
+			上边规范的前提是：使用的是mapper代理方法; -->
+		<!-- <mappers>
+		<mapper resource="com/lijunyu/spring/mapper/UserMapper.xml"/>
+		<mapper namespace="com.lijunyu.spring.dao.LoginDao"/>
+		<package name="com.lijunyu.spring.mapper" />
+		</mappers> -->
+		<!-- 加载数据库文件db.properties -->
+<!-- 		<properties resource="propertiesy/jdbc.properties">
+			properties中还可以配置一些属性名和属性值,此处的优先加载
+			<property name="driver" value=""/>
+		</properties> -->
+		<!-- 和spring整合后 environments配置将废除 -->
+<!-- 		<environments default="development">
+			<environment id="development">
+				使用jdbc事务管理,事务控制由mybatis管理
+				<transactionManager type="JDBC" />
+				数据库连接池,由mybatis管理
+				<dataSource type="POOLED">
+					<property name="driver" value="${jdbc_driverClassName}" />
+					<property name="url" value="${jdbc_url}" />
+					<property name="username" value="${jdbc_username" />
+					<property name="password" value="${jdbc_password}" />
+				</dataSource>
+			</environment>
+		</environments> -->
 </configuration>  

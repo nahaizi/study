@@ -1,33 +1,56 @@
 package com.lijunyu.spring.dao.impl;
 
-import org.apache.log4j.Logger;
+import java.io.InputStream;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lijunyu.spring.dao.LoginDao;
 import com.lijunyu.spring.entity.User;
 /**
  * 
- * @Description: µÇÂ¼Ò³Ãædao²ã
+ * @Description: ï¿½ï¿½Â¼Ò³ï¿½ï¿½daoï¿½ï¿½
  * @version 1.0.2
  * @author lijunyu
- * @date 2017Äê8ÔÂ22ÈÕÏÂÎç6:04:23
+ * @date 2017ï¿½ï¿½8ï¿½ï¿½22ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½6:04:23
  */
-@Repository  
+@Repository("LoginDaoImpl") 
 public class LoginDaoImpl implements LoginDao {
 	/**
-	 * ÈÕÖ¾¼ÇÂ¼Æ÷
+	 * ï¿½ï¿½Ö¾ï¿½ï¿½Â¼ï¿½ï¿½
 	 */
-	private Logger LOG = Logger.getLogger(LoginDaoImpl.class);
+	private Log LOG = LogFactory.getLog(getClass());
 	
+	@Autowired  
+	private SqlSessionTemplate sqlSession; 
 	/**
 	 * 
 	 */
 	@Override
 	public User selectUserById(Integer userId) {
-		LOG.info("--------------¿ªÊ¼²éÑ¯-------------");
-		// TODO Auto-generated method stub
-//		this.;
-		return null;
+		LOG.info("--------------å¼€å§‹æŸ¥è¯¢-------------");
+		InputStream in;
+		User user = new User();
+//		try {
+//			in = Resources.getResourceAsStream("com/lijunyu/spring/mapper/UserMapper.xml");
+//			
+//			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
+//			//ï¿½ï¿½È¡session
+//			SqlSession session = sqlSessionFactory.openSession();
+//			//ï¿½ï¿½ï¿½ï¿½mapperï¿½Ó¿ï¿½Êµï¿½ï¿½
+//			LoginDao userMapper = session.getMapper(LoginDao.class);
+//			user = userMapper.selectUserById(10);
+			
+			
+			user = sqlSession.selectOne("com.lijunyu.spring.dao.LoginDao.selectUserById", 10);  
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		return user;
 	}
 
 }

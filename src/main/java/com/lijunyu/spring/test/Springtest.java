@@ -12,9 +12,9 @@ import com.lijunyu.spring.entity.User;
 import com.lijunyu.spring.service.LoginService;  
   
 
-//Ê¹ÓÃ±ê×¼µÄJUnit @RunWith×¢ÊÍÀ´¸æËßJUnitÊ¹ÓÃSpring TestRunner  
+//Ê¹ï¿½Ã±ï¿½×¼ï¿½ï¿½JUnit @RunWith×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½JUnitÊ¹ï¿½ï¿½Spring TestRunner  
 @RunWith(SpringJUnit4ClassRunner.class)  
-//Ö¸¶¨bean×¢ÈëµÄÅäÖÃÎÄ¼þ  
+//Ö¸ï¿½ï¿½bean×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½  
 @ContextConfiguration(locations = { "classpath:/config/spring-servlet.xml" })  
 public class Springtest {
     @Autowired  
@@ -23,8 +23,9 @@ public class Springtest {
     private static Logger logger = LogManager.getLogger(Springtest.class.getName());
     @Test  
     public void selectUserByIdTest(){  
-    	logger.debug("¿ªÊ¼.........");
+    	logger.debug("ï¿½ï¿½Ê¼.........");
         User user = userService.selectUserById(10);  
-        logger.debug("²éÕÒ½á¹û" + user);  
+        logger.debug("ï¿½ï¿½ï¿½Ò½ï¿½ï¿½" + user); 
+        System.out.println(user);
     }  
 }

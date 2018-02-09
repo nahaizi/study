@@ -23,14 +23,14 @@
 
 
 
-	<!-- 配置数据源 -->
+	<!-- 配置数据源-->
 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 		<!-- 不使用properties来配置 -->
-		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> 
+			<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> 
 			<property name="url" value="jdbc:mysql://localhost:3306/learning" /> <property 
 			name="username" value="root" /> <property name="password" value="christmas258@" 
-			/> -->
+			/>  -->
 		<!-- 使用properties来配置 -->
 		<property name="driverClassName">
 			<value>${jdbc_driverClassName}</value>
@@ -61,6 +61,8 @@
 	</bean>
 
 	<!-- 自动扫描注解的bean -->
+	    <!--使用自动注入的时候要 添加他来扫描bean之后才能在使用的时候 -->  
+<!--     <context:component-scan base-package="com.website.service ,com.website.dao" />   -->
 	<context:component-scan base-package="com.lijunyu.spring.*" />
 <!-- <context:component-scan base-package="com.lijunyu.spring.service" /> -->
    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
@@ -69,5 +71,19 @@
 <!--         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property> -->
 <!--     </bean> -->
 
+  
+    <!--其实这里类的实例就是mybatis中SQLSession -->  
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">  
+        <constructor-arg index="0">  
+            <ref bean="sqlSessionFactory" />  
+        </constructor-arg>  
+    </bean>  
+  
+    <bean id="transactionManager"  
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean>  
+    <!--使用全注释事务 -->  
+<!--     <tx:annotation-driven transaction-manager="transactionManager" />   -->
 
 </beans>  

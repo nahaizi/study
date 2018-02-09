@@ -1,5 +1,7 @@
 package com.lijunyu.spring.entity;
 
+import java.sql.Date;
+
 /**
  * 
  * @Description: TODO
@@ -13,6 +15,7 @@ public class User {
 	private String userPassword;
 	private String userEmail;
 
+	private Date createtime;
 	public Integer getUserId() {
 		return userId;
 	}
@@ -43,6 +46,14 @@ public class User {
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
+	}
+
+	public Date getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
 	}
 
 	@Override
