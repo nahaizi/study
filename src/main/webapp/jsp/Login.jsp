@@ -30,6 +30,12 @@
 	<div>
 		<button id="login" onclick="login()">确定</button>
 	</div>
+	<div>
+		<button id="find" onclick="">检索</button>
+	</div>
+	<div>
+		<button id="test3" onclick="">ModelAndView</button>
+	</div>
 </body>
 
 <script type="text/javascript">
@@ -49,21 +55,23 @@
 // 			document.getElementById("password").style.backgroundColor = "blue"
 // 		};
 	}
-	function login() {
+/* 	function login() {
 		alert("555");
-	}
+	} */
 
 	$(function() {
 		$("#login").click(function() {
 			$.ajax({
-				url : "login/find.do",
+				url : "login/login1.do",
+// 				url : "login/login.do",
 				type : "POST",
-				data : {
+				
+				data :JSON.stringify( {
 					username : $("#name").val(),
 					password : $("#password").val()
-				},
+				}),
 				success : function(res) {
-					alert(res);
+					console.log(res);
 				},
 				error : function(err) {
 					console.log(err);
@@ -87,6 +95,46 @@
 // 				alert(msg);
 // 				})
 		})
+		
+	
+		$("#find").click(function() {
+			var data={"userName": "henry", "password": "880058"};
+			console.log(JSON.stringify(data));
+			$.ajax({
+				url : "login/find.do",
+				type : "POST",
+				data :/*  {
+					username : $("#name").val(),
+					password : $("#password").val()
+				} */
+				JSON.stringify(data)
+				,
+				success : function(res) {
+// 					alert(res);
+				},
+				error : function(err) {
+					console.log(err);
+				}
+			})
+		})
+		
+		$("#test3").click(function() {
+			$.ajax({
+				url : "login/test3",
+				type : "POST",
+				data : {
+					username : $("#name").val(),
+					password : $("#password").val()
+				},
+				success : function(res) {
+// 					alert(res);
+				},
+				error : function(err) {
+					console.log(err);
+				}
+			})
+		})
+		
 	});
 </script>
 </html>

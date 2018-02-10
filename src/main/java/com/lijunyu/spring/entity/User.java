@@ -7,12 +7,12 @@ import java.sql.Date;
  * @Description: TODO
  * @version 1.0.2
  * @author lijunyu
- * @date 2017Äê8ÔÂ21ÈÕÉÏÎç10:24:59
+ * @date 2017ï¿½ï¿½8ï¿½ï¿½21ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10:24:59
  */
 public class User {
 	private Integer userId;
-	private String userName;
-	private String userPassword;
+	private String username;
+	private String password;
 	private String userEmail;
 
 	private Date createtime;
@@ -25,19 +25,19 @@ public class User {
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 
 	public String getUserPassword() {
-		return userPassword;
+		return password;
 	}
 
 	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+		this.password = userPassword;
 	}
 
 	public String getUserEmail() {
@@ -58,7 +58,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", userPassword=" + userPassword + ", userEmail="
+		return "User [userId=" + userId + ", userName=" + username + ", userPassword=" + password + ", userEmail="
 				+ userEmail + "]";
 	}
 }

@@ -1,55 +1,50 @@
 package com.lijunyu.spring.controller;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.lijunyu.spring.entity.User;
 import com.lijunyu.spring.service.LoginService;
 
 /**
  * 
- * @Description: µÇÂ¼Ò³Ãæ
+ * @Description: ï¿½ï¿½Â¼Ò³ï¿½ï¿½
  * @version 1.0.2
  * @author lijunyu
- * @date 2017Äê8ÔÂ22ÈÕÏÂÎç5:58:36
+ * @date 2017ï¿½ï¿½8ï¿½ï¿½22ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½5:58:36
  */
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-	//ÈÕÖ¾
+	//ï¿½ï¿½Ö¾
 	private Log LOG = LogFactory.getLog(getClass());
 	@Resource
 	LoginService loginservice;
 	
 	/**
 	 * 
-	 * @Description: µÇÂ½·½·¨
-	 * @param session
-	 * @param data
+	 * @param request
+	 * @param response
 	 * @return
-	 * @return String
-	 * @throws
-	 * @author lijunyu
-	 * @date 2018Äê2ÔÂ9ÈÕÏÂÎç5:40:14
-	 *===========================================
-	 * ĞŞ¸ÄÈË£ºlijunyu£¬    ĞŞ¸ÄÊ±¼ä£º2018Äê2ÔÂ9ÈÕÏÂÎç5:40:14£¬    ĞŞ¸Ä°æ±¾£º
-	 * ĞŞ¸Ä±¸×¢£ºTODO
-	 *===========================================
 	 */
-	@RequestMapping(value="login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-	@ResponseBody  
-	public String login(HttpSession session,@RequestBody Map<String, Object> data){
+	@RequestMapping("/login.do")
+	public String login(HttpServletRequest request, HttpServletResponse response,@RequestBody User userparam){
 //		SysAdmin admin = (SysAdmin) session.getAttribute(Constant.LOGIN_SESSION);  
 //	          
 //	        JSONObject json=new JSONObject(data);  
@@ -58,32 +53,77 @@ public class LoginController {
 //	        user.setPageNum(0);  
 //	        user.setInsert_Date(json.getString("year"));  
 	        //user.setInsert_Date(json.getString("year"));  
-		LOG.info("-----------é_Ê¼ ²éÔƒ----------");
+		LOG.info("-----------å¼€å§‹æŸ¥è¯¢ç”¨æˆ·----------");
+		String username = (String) request.getAttribute("username");
+		LOG.info("username: --------------------"+username+ "-------------------");
+		String password = (String) request.getAttribute("password");
+		LOG.info("password: --------------------"+password+ "-------------------");
+		
 		User user = loginservice.selectUserById(10);
 //		model.addAttribute("user",user);
-		return "../jsp/Login.jsp";
+		
+		try {
+			response.sendRedirect("../jsp/user/UserList.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "../jsp/user/UserList.jsp";
+	}
+	
+	@RequestMapping(value = "/login1.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String login(@RequestBody User userparam){
+		LOG.info("-----------å¼€å§‹æŸ¥è¯¢ç”¨æˆ·----------");
+		String username = userparam.getUserName();
+		LOG.info("username: --------------------"+username+ "-------------------");
+		String password = userparam.getUserPassword();
+		LOG.info("password: --------------------"+password+ "-------------------");
+		
+		User user = loginservice.selectUserById(10);
+//		model.addAttribute("user",user);
+		
+		return "success";
+	}
+	
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/find.do")
+	public String find(Model model){
+		LOG.info("-----------å¼€å§‹æ£€ç´¢----------");
+		User user = loginservice.selectUserById(10);
+		model.addAttribute("user",user);
+		/**
+	     * ä½¿ç”¨forwardè·³è½¬,ä¼ é€’åŸºæœ¬ç±»å‹å‚æ•°åˆ°é¡µé¢
+	     *     æ³¨æ„:
+	     *         1.ä½¿ç”¨springmvc å°è£…å¥½çš„Modelå¯¹è±¡(åº•å±‚å°±æ˜¯requestä½œç”¨åŸŸ)
+	     */
+		return "../jsp/user/UserList.jsp";
 	}
 	
 	
 	/**
-	 * 
-	 * @Description: ²éÑ¯·½·¨
-	 * @param model
-	 * @return
-	 * @return String
-	 * @throws
-	 * @author lijunyu
-	 * @date 2017Äê8ÔÂ22ÈÕÏÂÎç6:00:26
-	 *===========================================
-	 * ĞŞ¸ÄÈË£ºlijunyu£¬    ĞŞ¸ÄÊ±¼ä£º2017Äê8ÔÂ22ÈÕÏÂÎç6:00:26£¬    ĞŞ¸Ä°æ±¾£º
-	 * ĞŞ¸Ä±¸×¢£º
-	 *===========================================
-	 */
-	@RequestMapping("/find.do")
-	public String find(HttpSession session,@RequestBody Map<String, Object> data){
-		LOG.info("-----------é_Ê¼ ²éÔƒ----------");
-		User user = loginservice.selectUserById(10);
-//		model.addAttribute("user",user);
-		return "../jsp/Login.jsp";
-	}
+     * ä½¿ç”¨modelAndView
+     *     æ³¨æ„äº‹é¡¹
+     *         modelAndViewå¯¹è±¡ä¸­çš„æ•°æ®åªèƒ½è¢«ModelAndViewå¯¹è±¡çš„è§†å›¾è·å–
+     */
+    @RequestMapping("/test2.do")
+    public ModelAndView test2(ModelAndView modelAndView){
+    	LOG.info("------------ä½¿ç”¨ModelAndView----------------");
+        String name = "å¼ å°äº”";
+        modelAndView.setViewName("../jsp/user/UserList.jsp");
+        modelAndView.addObject("name", name);
+        return  modelAndView;
+         
+    }
+    
+    @RequestMapping("/test3")
+    public ModelAndView test3(){
+    	LOG.info("------------ä½¿ç”¨ModelAndView----------------");
+        String name = "å¼ å°å…­";
+        return new ModelAndView("/login/test2.do", "name", name);
+    }
 }
