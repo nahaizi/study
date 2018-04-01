@@ -12,15 +12,15 @@ import com.lijunyu.spring.dao.LoginDao;
 import com.lijunyu.spring.entity.User;
 /**
  * 
- * @Description: ��¼ҳ��dao��
+ * @Description: TODO
  * @version 1.0.2
  * @author lijunyu
- * @date 2017��8��22������6:04:23
+ * @date 2018年3月1日下午7:50:45
  */
 @Repository("LoginDaoImpl") 
 public class LoginDaoImpl implements LoginDao {
 	/**
-	 * ��־��¼��
+	 * 
 	 */
 	private Log LOG = LogFactory.getLog(getClass());
 	
@@ -31,7 +31,7 @@ public class LoginDaoImpl implements LoginDao {
 	 */
 	@Override
 	public User selectUserById(Integer userId) {
-		LOG.info("--------------开始查询-------------");
+		LOG.info("--------------开始查询李君愚-------------");
 		InputStream in;
 		User user = new User();
 //		try {

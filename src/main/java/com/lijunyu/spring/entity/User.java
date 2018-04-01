@@ -7,7 +7,7 @@ import java.sql.Date;
  * @Description: TODO
  * @version 1.0.2
  * @author lijunyu
- * @date 2017��8��21������10:24:59
+ * @date 2018年3月1日上午11:24:59
  */
 public class User {
 	private Integer userId;
@@ -24,20 +24,21 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getUserName() {
+
+	public String getUsername() {
 		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.username = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getUserPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setUserPassword(String userPassword) {
-		this.password = userPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getUserEmail() {

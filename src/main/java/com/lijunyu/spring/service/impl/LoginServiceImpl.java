@@ -8,24 +8,25 @@ import com.lijunyu.spring.dao.LoginDao;
 import com.lijunyu.spring.entity.User;
 import com.lijunyu.spring.service.LoginService;
 
+
 /**
  * 
- * @Description: µÇÂ¼Ò³ÃæÂß¼­
+ * @Description: TODO
  * @version 1.0.2
  * @author lijunyu
- * @date 2017Äê8ÔÂ22ÈÕÏÂÎç6:03:42
+ * @date 2018å¹´3æœˆ1æ—¥ä¸‹åˆ7:34:06
  */
 @Service
 public class LoginServiceImpl implements LoginService {
 	/**
-	 * ÈÕÖ¾¼ÇÂ¼Æ÷
+	 * 
 	 */
 	private Logger LOG = Logger.getLogger(LoginServiceImpl.class);
 	@Autowired  
 	private LoginDao userDao;  
 	@Override
 	public User selectUserById(Integer userId) {  
-		LOG.info("--------------ÒµÎñÂß¼­²ã-------------");
+		LOG.info("--------------æŸ¥è¯¢ç”¨æˆ·è‹¦è‹¦-------------");
 		return userDao.selectUserById(userId);  
 	}  
 }

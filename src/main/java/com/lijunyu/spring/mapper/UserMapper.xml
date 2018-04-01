@@ -5,8 +5,8 @@
 <!--设置domain类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致，此处一定要！-->  
     <resultMap id="ResultMap" type="com.lijunyu.spring.entity.User">  
         <id column="USER_ID" property="userId" jdbcType="INTEGER" />  
-        <result column="USER_NAME" property="userName" jdbcType="CHAR" />  
-        <result column="USER_PASSWORD" property="userPassword" jdbcType="CHAR" />  
+        <result column="USERNAME" property="username" jdbcType="CHAR" />  
+        <result column="PASSWORD" property="password" jdbcType="CHAR" />  
         <result column="USER_EMAIL" property="userEmail" jdbcType="CHAR" />  
         <result column="createtime" property="createtime" javaType="java.sql.Date" jdbcType="DATE" /> 
     </resultMap>  

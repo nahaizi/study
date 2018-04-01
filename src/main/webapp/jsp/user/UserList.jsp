@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h2>Hello World! lijunyu!</h2>
+
+
+	 time:${requestScope.time}
+  <br/>
+  name:${name }
 	<form action="saysth.do" method="post">
 		<table>
 			<thead>
@@ -32,7 +38,7 @@
 				<tr>
 					<td><input name="users[2].firstName" value="eee" /></td>
 					<td><input name="users[2].lastName" value="fff" /></td>
-				</tr>
+				</tr> 
 			</tbody>
 		</table>
 	</form>

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="    
-           http://www.springframework.org/schema/beans    
-           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd    
+	       http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+           http://www.springframework.org/schema/beans   
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd    
            http://www.springframework.org/schema/aop    
-           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd  
            http://www.springframework.org/schema/context    
-           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	<!-- 引入jdbc配置文件 -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -21,16 +24,25 @@
 		</property>
 	</bean>
 
+	<!-- viewResolver -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<!-- 视图解析类型 -->
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<!-- 设置前缀 -->
+		<property name="prefix" value="/" />
+	</bean>
+	<context:component-scan base-package="com.lijunyu.spring.controller" />
 
-
-	<!-- 配置数据源-->
+	<!-- 配置数据源 -->
 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<!-- 不使用properties来配置 -->
-			<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> 
+		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> 
 			<property name="url" value="jdbc:mysql://localhost:3306/learning" /> <property 
 			name="username" value="root" /> <property name="password" value="christmas258@" 
-			/>  -->
+			/> -->
 		<!-- 使用properties来配置 -->
 		<property name="driverClassName">
 			<value>${jdbc_driverClassName}</value>
@@ -47,43 +59,47 @@
 	</bean>
 
 	<!-- 自动扫描了所有的XxxxMapper.xml对应的mapper接口文件，这样就不用一个一个手动配置Mpper的映射了，只要Mapper接口类和Mapper映射文件对应起来就可以了。 -->
-<!-- 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> -->
-<!-- 		<property name="basePackage" value="com.lijunyu.spring.dao" /> -->
-<!-- 	</bean> -->
+	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> -->
+	<!-- <property name="basePackage" value="com.lijunyu.spring.dao" /> -->
+	<!-- </bean> -->
 
 	<!-- 配置Mybatis的文件 ，mapperLocations配置**Mapper.xml文件位置，configLocation配置mybatis-config文件位置 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath*:com/lijunyu/spring/mapper/**/*.xml" />
+		<property name="mapperLocations"
+			value="classpath*:com/lijunyu/spring/mapper/**/*.xml" />
 		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
 		<!-- <property name="typeAliasesPackage" value="com.tiantian.ckeditor.model" 
 			/> -->
 	</bean>
 
 	<!-- 自动扫描注解的bean -->
-	    <!--使用自动注入的时候要 添加他来扫描bean之后才能在使用的时候 -->  
-<!--     <context:component-scan base-package="com.website.service ,com.website.dao" />   -->
+	<!--使用自动注入的时候要 添加他来扫描bean之后才能在使用的时候 -->
+	<!-- <context:component-scan base-package="com.website.service ,com.website.dao" 
+		/> -->
 	<context:component-scan base-package="com.lijunyu.spring.*" />
-<!-- <context:component-scan base-package="com.lijunyu.spring.service" /> -->
-   <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
-<!--     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> -->
-<!--         <property name="basePackage" value="com.lijunyu.spring.dao" /> -->
-<!--         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property> -->
-<!--     </bean> -->
+	<!-- <context:component-scan base-package="com.lijunyu.spring.service" /> -->
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> -->
+	<!-- <property name="basePackage" value="com.lijunyu.spring.dao" /> -->
+	<!-- <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property> -->
+	<!-- </bean> -->
 
-  
-    <!--其实这里类的实例就是mybatis中SQLSession -->  
-    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">  
-        <constructor-arg index="0">  
-            <ref bean="sqlSessionFactory" />  
-        </constructor-arg>  
-    </bean>  
-  
-    <bean id="transactionManager"  
-        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
-        <property name="dataSource" ref="dataSource" />  
-    </bean>  
-    <!--使用全注释事务 -->  
-<!--     <tx:annotation-driven transaction-manager="transactionManager" />   -->
 
+	<!--其实这里类的实例就是mybatis中SQLSession -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0">
+			<ref bean="sqlSessionFactory" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!--使用全注释事务 -->
+<!-- 	<tx:annotation-driven transaction-manager="transactionManager" /> -->
+	<!-- 会自动注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter   
+        两个bean,是spring MVC为@Controllers分发请求所必须的。 并提供了：数据绑定支持，@NumberFormatannotation支持，@DateTimeFormat支持，@Valid支持，读写XML的支持（JAXB），读写JSON的支持（Jackson） -->  
+    <mvc:annotation-driven />  
 </beans>  
