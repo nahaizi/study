@@ -59,7 +59,8 @@ public class LoginController {
         LOG.info("username: --------------------" + username + "-------------------");
         String password = (String) request.getAttribute("password");
         LOG.info("password: --------------------" + password+ "-------------------");
-        
+
+		response.setContentType("application/json");// 设置响应内容格式为json
         User user = loginservice.selectUserById(10);
 //        model.addAttribute("user",user);
         request.setAttribute("res","success");
@@ -68,7 +69,7 @@ public class LoginController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "/user/UserList.jsp";
+        return "user/UserList";
     }
     
     @ResponseBody
@@ -99,7 +100,7 @@ public class LoginController {
         /**
          * 
          */
-        return "jsp/user/UserList.jsp";
+        return "user/UserList";
     }
     
     

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.lijunyu.spring.dao.LoginDao;
 import com.lijunyu.spring.entity.User;
+import com.lijunyu.spring.mapper.UserMapper;
 import com.lijunyu.spring.service.LoginService;
 
 
@@ -23,10 +24,13 @@ public class LoginServiceImpl implements LoginService {
 	 */
 	private Logger LOG = Logger.getLogger(LoginServiceImpl.class);
 	@Autowired  
-	private LoginDao userDao;  
+	private LoginDao userDao; 
+	@Autowired  
+	private UserMapper usermapper;  
+	
 	@Override
 	public User selectUserById(Integer userId) {  
 		LOG.info("--------------查询用户苦苦-------------");
-		return userDao.selectUserById(userId);  
+		return usermapper.selectUserById(userId);  
 	}  
 }

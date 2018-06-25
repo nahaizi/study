@@ -19,10 +19,11 @@ public class Login {
         {  
     		LOG.info("username: --------------------"+username+ "-------------------");
     		LOG.info("password: --------------------"+password+ "-------------------");
-            model.addAttribute("username", username);  
-            return "jsp/OK.jsp";  
+            model.addAttribute("username", username); 
+            model.addAttribute("user", username);
+            return "user/login";  
         } else {  
-            return "jsp/NO.jsp";  
+            return "NO";  
         }  
     }  
     //方式二

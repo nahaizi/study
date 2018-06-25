@@ -11,12 +11,7 @@
 <script src="<%=basePath%>js/bootstrap/bootstrap.min.js"></script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- 浏览器基本配置 -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- IE兼容配置 -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="renderer" content="webkit">
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+
 <title>李君愚的</title>
 </head>
 <body>
@@ -71,7 +66,7 @@
 	} */
 
 	function logintest(){
-	    window.location.href = 'logintest.jsp';
+	    window.location.href = 'jsp/logintest.jsp';
 	}
 	
 	$(function() {
@@ -79,15 +74,16 @@
 			var data={"username": "henry", "password": "880058"};
 			console.log(JSON.stringify(data));
 			$.ajax({
-				url : "login/login1.do",
+// 				url : "login/login1.do",
 // 				url : "login/test.do",
-// 				url : "login/login.do",
+				url : "login/login.do",
 				type : "POST",
 				dataType: "json", 
 			    contentType: "application/json; charset=UTF-8",
 				data : JSON.stringify(data),
 				success : function(res) {
-					console.log(res);
+					 window.location.href = "jsp/logintest.jsp";  
+// 					console.log(res);
 				},
 				error : function(err) {
 					console.log(err);
